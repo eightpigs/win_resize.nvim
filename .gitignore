@@ -1,1 +1,3 @@
-doc/tags
+lua
+.lua-format
+README.md
