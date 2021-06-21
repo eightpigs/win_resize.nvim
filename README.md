@@ -13,18 +13,7 @@
 ### [packer](https://github.com/wbthomason/packer.nvim)
 
 ```lua
-use {
-  'eightpigs/win_resize.nvim',
-  config = function()
-    require('win_resize').setup { min_win_count = 2, resize_ratio = 0.95 }
-    vim.cmd [[
-      augroup resizeWin
-        autocmd!
-        autocmd BufEnter * lua vide.view.resize()
-      augroup END
-    ]]
-  end
-}
+use { 'eightpigs/win_resize.nvim' }
 ```
 
 ## Configuration
@@ -74,10 +63,19 @@ use {
 ### Usage
 
 ```lua
-vim.cmd [[
-  augroup resizeWin
-    autocmd!
-    autocmd BufEnter * lua require('win_resize').resize()
-  augroup END
-]]
+use {
+  'eightpigs/win_resize.nvim',
+  config = function()
+    require('win_resize').setup {
+      min_win_count = 2,
+      resize_ratio = 0.90,
+    }
+    vim.cmd [[
+      augroup resizeWin
+        autocmd!
+        autocmd BufEnter,FocusGained,VimResized * lua vide.view.resize()
+      augroup END
+    ]]
+  end
+}
 ```
